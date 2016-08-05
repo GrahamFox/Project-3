@@ -1,0 +1,1 @@
+gunicorn web:project3.wsgi:application
