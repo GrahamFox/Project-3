@@ -15,21 +15,26 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Album.objects.all()
 
+
 class DetailView(generic.DetailView):
     model = Album
     template_name = 'music/detail.html'
+
 
 class AlbumCreate(CreateView):
     model = Album
     fields = ['artist', 'album_title', 'genre', 'album_logo']
 
+
 class AlbumUpdate(UpdateView):
     model = Album
     fields = ['artist', 'album_title', 'genre', 'album_logo']
 
+
 class AlbumDelete(DeleteView):
     model = Album
     success_url = reverse_lazy('music:index')
+
 
 class UserFormView(View):
     form_class = UserForm
@@ -48,7 +53,7 @@ class UserFormView(View):
 
             user = form.save(commit=False)
 
-            #cleaned (normalised) data
+            # cleaned (normalised) data
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user.set_password(password)
@@ -60,10 +65,11 @@ class UserFormView(View):
             if user is not None:
 
                 if user.is_active:
-
                     login(request, user)
                     return redirect('music:index')
 
         return render(request, self.template_name, {'form': form})
 
 
+def myHomepage(request):
+    return render(request, 'base.html')
