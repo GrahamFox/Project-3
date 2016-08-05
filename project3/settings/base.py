@@ -13,12 +13,13 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__ + '/../')))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__+'/../')))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
 
 SECRET_KEY = os.getenv("SECRET_KEY", "")
 
@@ -86,6 +87,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -99,6 +101,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
     'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
     'Cache-Control': 'max-age=94608000',
@@ -111,10 +114,12 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_HOST = "s3-eu-west-1.amazonaws.com"
 AWS_S3_FILE_OVERWRITE = False
 
-STATICFILES_LOCATION = 'project3/static'
+
+STATICFILES_LOCATION = 'static'
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
 STATICFILES_DIRS = (os.path.join(BASE_DIR, STATICFILES_LOCATION),)  # static directory at the project level
+
 
 MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
