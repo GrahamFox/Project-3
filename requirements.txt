@@ -14,3 +14,4 @@ sqlparse==0.2.0
 wheel==0.24.0
 MySQL-python==1.2.5
 gunicorn
+django-forms-bootstrap==3.0.1

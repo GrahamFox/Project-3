@@ -18,12 +18,18 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from music import views
+from accounts import views as accounts_views
+from blog.views import post_list
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^logout/', accounts_views.logout, name='logout'),
+    url(r'^register/', accounts_views.register, name='register'),
+    url(r'^login/', accounts_views.login, name='login'),
+    url(r'^profile/', accounts_views.profile, name='profile'),
     url(r'^music/', include('music.urls')),
-    url(r'', include('blog.urls')),
-    url(r'^$', views.myHomepage),
+    url(r'blog/', include('blog.urls')),
+    url(r'^$', post_list, name='index'),
 ]
 
 if settings.DEBUG:

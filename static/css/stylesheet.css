@@ -19,3 +19,8 @@ body {
 .glyphicon-star.active{
     color: #FDB230;
 }
+
+.img-responsive {
+    height: 300px;
+    width: 300px;
+}

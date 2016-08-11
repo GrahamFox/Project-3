@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'music.apps.MusicConfig',
     'storages',
     'blog',
+    'accounts',
+    'django_forms_bootstrap',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -124,3 +126,12 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, STATICFILES_LOCATION),)  # static dir
 MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+
+AUTH_USER_MODEL = 'accounts.User'
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend', 'accounts.backends.EmailAuth',)
+
+# Stripe environment variables
+
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE', 'pk_test_o7JVfaboQTjWVfNasYQj4Q66')
+
+STRIPE_SECRET = os.getenv('STRIPE_SECRET', 'sk_test_IqRzvtcyEaQOrfuUrsH6eWJ9')

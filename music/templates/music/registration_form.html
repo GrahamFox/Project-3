@@ -1,28 +1,26 @@
 {% extends 'base.html' %}
 {% block title %}Register{% endblock %}
 
+{% load staticfiles %}
+{% block head_js %}
+    <script src="https://js.stripe.com/v2/" type="text/javascript"></script>
+    <script type="text/javascript">
+        Stripe.publishableKey = '{{ publishable }}'
+
+    </script>
+    <script type="text/javascript" src="{% static "js/stripe.js" %}"></script>
+
+{% endblock %}
 
 {% block body %}
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12 col-md-7">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h3>Create a New Account</h3>
-                        <form class="form-horizontal" action ="" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {% include 'form-template.html' %}
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-success">Submit</button>
-                                    </div>
-                                </div>
-                        </form>
-                    </div>
+        <form role="form" method="POST" id="register-form" action="{% url 'register' %}">
+            <legend>Create a new account</legend>
+                {% csrf_token %}
+                {{ form|as_bootstrap }}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Create Account</button>
                 </div>
-            </div>
-        </div>
-    </div>
+        </form>
 
 {% endblock %}
