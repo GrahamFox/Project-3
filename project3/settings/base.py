@@ -33,10 +33,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'music.apps.MusicConfig',
+    'debug_toolbar',
+    'tinymce',
+    'emoticons',
     'storages',
     'blog',
+    'disqus'
     'accounts',
     'django_forms_bootstrap',
+    'polls',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -134,3 +139,5 @@ AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend', 'account
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE', 'pk_test_o7JVfaboQTjWVfNasYQj4Q66')
 
 STRIPE_SECRET = os.getenv('STRIPE_SECRET', 'sk_test_IqRzvtcyEaQOrfuUrsH6eWJ9')
+
+TINYMCE_JS_ROOT = os.path._join(BASE_DIR, "static", 'js', 'tinymce', 'tinymce.min.js')
